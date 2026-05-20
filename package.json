@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "F:\\node.exe node_modules\\next\\dist\\bin\\next dev -H 0.0.0.0 -p 3010",
-    "build": "F:\\node.exe node_modules\\next\\dist\\bin\\next build",
-    "start": "F:\\node.exe node_modules\\next\\dist\\bin\\next start",
-    "lint": "F:\\node.exe node_modules\\next\\dist\\bin\\next lint"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "^14.2.3",
