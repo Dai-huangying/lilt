@@ -12,10 +12,12 @@ node_modules/
 
 # Production
 /build
+/dist
 
 # Misc
 .DS_Store
 *.pem
+.cache/
 
 # Debug
 npm-debug.log*
@@ -45,3 +47,6 @@ Desktop.ini
 *.tmp
 *.temp
 *.bak
+
+# Git
+.git/
