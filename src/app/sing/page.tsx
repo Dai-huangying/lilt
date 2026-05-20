@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { Play, Pause, Mic, MicOff, ArrowLeft, Sparkles, SkipBack, SkipForward, Heart, Check, RotateCcw, Loader2 } from 'lucide-react';
-import { demoSong, lyrics, feedbacks } from '@/data/songs';
+import { Play, Pause, ArrowLeft, Sparkles, SkipBack, SkipForward, Heart, Check, RotateCcw, Loader2 } from 'lucide-react';
+import { demoSong, lyrics } from '@/data/songs';
 import { useRouter } from 'next/navigation';
 import { useShadowingSession } from '@/hooks/useShadowingSession';
 import { useRecorder } from '@/hooks/useRecorder';
