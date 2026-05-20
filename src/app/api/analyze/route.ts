@@ -235,7 +235,8 @@ export async function POST(request: NextRequest) {
 
     if (!apiKey || apiKey === 'your-gemini-api-key-here') {
       console.warn('[API/Analyze] No valid API key found, using mock response');
-      return generateMockResponse();
+      const mockResponse = generateMockResponse();
+      return mockResponse;
     }
 
     // Convert blob to base64
@@ -267,7 +268,8 @@ export async function POST(request: NextRequest) {
     } else {
       console.error('[API/Analyze] Analysis failed:', result.error);
       console.log('[API/Analyze] Falling back to mock response');
-      return NextResponse.json(generateMockResponse());
+      const mockResponse = generateMockResponse();
+      return mockResponse;
     }
 
   } catch (error) {
@@ -291,7 +293,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateMockResponse(): { success: boolean; analysis: AnalysisResult } {
+function generateMockResponse(): NextResponse {
   const MOCK_FEEDBACKS = [
     {
       vibeFeedback: 'Relax the ending a little.',
@@ -323,7 +325,7 @@ function generateMockResponse(): { success: boolean; analysis: AnalysisResult } 
 
   console.log('[API/Analyze] Generating mock response (no API key configured)');
 
-  return {
+  return NextResponse.json({
     success: true,
     analysis: {
       pronunciation: Math.floor(Math.random() * 20) + 75,
@@ -334,5 +336,5 @@ function generateMockResponse(): { success: boolean; analysis: AnalysisResult } 
       ...mockFeedback,
       analyzedAt: new Date().toISOString(),
     },
-  };
+  });
 }
