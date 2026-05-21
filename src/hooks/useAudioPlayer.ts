@@ -97,7 +97,7 @@ export function useAudioPlayer(audioUrl: string): UseAudioPlayerReturn {
       analyserRef.current.fftSize = 256;
       
       const bufferLength = analyserRef.current.frequencyBinCount;
-      dataArrayRef.current = new Uint8Array(bufferLength);
+      dataArrayRef.current = new Uint8Array(new ArrayBuffer(bufferLength));
 
       sourceRef.current = audioContextRef.current.createMediaElementSource(audioRef.current);
       sourceRef.current.connect(analyserRef.current);
