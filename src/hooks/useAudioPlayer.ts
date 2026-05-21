@@ -41,7 +41,7 @@ export function useAudioPlayer(audioUrl: string): UseAudioPlayerReturn {
   const audioContextRef = useRef<AudioContext | null>(null);
   const analyserRef = useRef<AnalyserNode | null>(null);
   const sourceRef = useRef<MediaElementAudioSourceNode | null>(null);
-  const dataArrayRef = useRef<Uint8Array | null>(null);
+  const dataArrayRef = useRef<Uint8Array<ArrayBuffer> | null>(null);
   const animationFrameRef = useRef<number | null>(null);
   const updateIntervalRef = useRef<number | null>(null);
 
@@ -97,7 +97,8 @@ export function useAudioPlayer(audioUrl: string): UseAudioPlayerReturn {
       analyserRef.current.fftSize = 256;
       
       const bufferLength = analyserRef.current.frequencyBinCount;
-      dataArrayRef.current = new Uint8Array(new ArrayBuffer(bufferLength));
+      const arrayBuffer = new ArrayBuffer(bufferLength);
+      dataArrayRef.current = new Uint8Array(arrayBuffer);
 
       sourceRef.current = audioContextRef.current.createMediaElementSource(audioRef.current);
       sourceRef.current.connect(analyserRef.current);
