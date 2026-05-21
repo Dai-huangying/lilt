@@ -26,7 +26,6 @@ export default function SingingExperience() {
     state: sessionState,
     currentLineIndex,
     currentTime,
-    feedbackIndex,
     isCompleted,
     progress,
     currentLine,

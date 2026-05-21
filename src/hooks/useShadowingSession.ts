@@ -1,5 +1,5 @@
 import { useReducer, useCallback, useEffect, useRef } from 'react';
-import { lyrics, feedbacks, demoSong } from '@/data/songs';
+import { lyrics, demoSong } from '@/data/songs';
 import { useAudioPlayer } from '@/hooks/useAudioPlayer';
 import { RecordingMetadata, RecordingAnalysis } from '@/types/recording';
 
@@ -9,7 +9,6 @@ export interface SessionStateData {
   state: SessionState;
   currentLineIndex: number;
   currentTime: number;
-  feedbackIndex: number;
 }
 
 type SessionAction =
@@ -29,7 +28,6 @@ const initialState: SessionStateData = {
   state: 'idle',
   currentLineIndex: 0,
   currentTime: 0,
-  feedbackIndex: 0,
 };
 
 function sessionReducer(state: SessionStateData, action: SessionAction): SessionStateData {
@@ -53,7 +51,6 @@ function sessionReducer(state: SessionStateData, action: SessionAction): Session
       return { 
         ...state, 
         state: 'feedback',
-        feedbackIndex: (state.feedbackIndex + 1) % feedbacks.length
       };
     
     case 'NEXT_LINE': {
@@ -115,7 +112,6 @@ export interface UseShadowingSessionReturn {
   state: SessionState;
   currentLineIndex: number;
   currentTime: number;
-  feedbackIndex: number;
   isCompleted: boolean;
   progress: number;
   currentLine: typeof lyrics[0];
@@ -254,7 +250,6 @@ export function useShadowingSession(props?: UseShadowingSessionProps): UseShadow
     state: sessionData.state,
     currentLineIndex: sessionData.currentLineIndex,
     currentTime: sessionData.currentTime,
-    feedbackIndex: sessionData.feedbackIndex,
     isCompleted,
     progress,
     currentLine,
